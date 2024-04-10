@@ -31,6 +31,10 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
+        existe = False
+        for elem in self._members:
+            if elem['id'] == member['id']:
+                return {'msg': 'Member already exist'}
         self._members.append(member)
         return self._members
 
@@ -47,3 +51,4 @@ class FamilyStructure:
 
     def get_all_members(self):
         return self._members
+

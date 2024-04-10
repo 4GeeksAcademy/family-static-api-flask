@@ -22,10 +22,10 @@ def sitemap():
 def add_a_member():
     try:
         request_body = request.json
-        member = jackson_family.add_member(request_body)
-        if member is None:
-            return jsonify({'msg': 'Member not found'}), 404
-        return jsonify(member), 200
+        if not request_body:
+            return jsonify({'msg': 'Bad Request'}), 400
+        members = jackson_family.add_member(request_body)
+        return jsonify(members), 200
     except:
         return jsonify({'error': 'Internal Server Error'}), 500
 
