@@ -1,5 +1,5 @@
 from random import randint
-
+from flask import jsonify
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
@@ -33,9 +33,9 @@ class FamilyStructure:
     def add_member(self, member):
         for elem in self._members:
             if elem['id'] == member['id']:
-                return {'msg': 'Member already exist'}
+                return jsonify({'msg': 'Member already exist'}), 409
         self._members.append(member)
-        return self._members
+        return jsonify(self._members), 200
 
     def delete_member(self, id):
         for member in self._members:

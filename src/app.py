@@ -25,7 +25,7 @@ def add_a_member():
         if not request_body:
             return jsonify({'msg': 'Bad Request'}), 400
         members = jackson_family.add_member(request_body)
-        return jsonify(members), 200
+        return (members)
     except:
         return jsonify({'error': 'Internal Server Error'}), 500
 
