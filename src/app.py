@@ -32,12 +32,10 @@ def add_a_member():
 @app.route('/member/<int:id>', methods=['DELETE'])
 def delete_a_member(id):
     try:
-        member = jackson_family.get_member(id)
-        if member:
-            jackson_family.delete_member(id)
-            return jsonify({'done': True}), 200
-        else:
+        members = jackson_family.delete_member(id)
+        if members is None:
             return jsonify({'msg': 'Member not found'}), 404
+        return jsonify(members), 200 
     except:
         return jsonify({'error': 'Internal Server Error'}), 500
 
