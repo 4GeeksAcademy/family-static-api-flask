@@ -24,7 +24,7 @@ def add_a_member():
         request_body = request.json
         member = jackson_family.add_member(request_body)
         if member is None:
-            return jsonify({'error': 'Member not found'}), 404
+            return jsonify({'msg': 'Member not found'}), 404
         return jsonify(member), 200
     except:
         return jsonify({'error': 'Internal Server Error'}), 500
@@ -37,7 +37,7 @@ def delete_a_member(id):
             jackson_family.delete_member(id)
             return jsonify({'done': True}), 200
         else:
-            return jsonify({'error': 'Member not found'}), 404
+            return jsonify({'msg': 'Member not found'}), 404
     except:
         return jsonify({'error': 'Internal Server Error'}), 500
 
@@ -46,7 +46,7 @@ def get_member_info(id):
     try:
         member = jackson_family.get_member(id)
         if member is None:
-            return jsonify({'error': 'Member not found'}), 404
+            return jsonify({'msg': 'Member not found'}), 404
         return jsonify(member), 200
     except:
         return jsonify({'error': 'Internal Server Error'}), 500
@@ -55,8 +55,8 @@ def get_member_info(id):
 def get_members_info():
     try:
         members = jackson_family.get_all_members()
-        if members is None:
-            return jsonify({'error': 'Members not found'}), 404
+        if members == []:
+            return jsonify({'msg': 'Members not found'}), 404
         return jsonify(members), 200
     except:
         return jsonify({'error': 'Internal Server Error'}), 500

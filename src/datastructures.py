@@ -4,7 +4,7 @@ class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
         self._members = [
-            {
+           {
                 'id': self._generateId(),
                 'firt_name': "John",
                 'last_name': self.last_name,
